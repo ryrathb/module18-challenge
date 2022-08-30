@@ -1,16 +1,16 @@
 const { Schema, Types } = require('mongoose');
-const formatDate = require('../utils/formatDate');
+const moment = require('moment')
 
 const reactionSchema = new Schema(
     {
-        reaction_id: {
+        reactionId: {
             type: Schema.Types.ObjectId,
             default: () => new Types.ObjectId()
         },
-        body: {
+        reactionBody: {
             type: String,
             required: true,
-            maxlength: 400
+            maxlength: 280
         },
         username: {
             type: String,
@@ -19,7 +19,7 @@ const reactionSchema = new Schema(
         createdAt: {
             type: Date,
             default: Date.now,
-            get: value => formatDate(value)
+            get: createdAtVal => moment(createdAtVal).format('MMM DD, YYYY [at] hh:mm a')
         }
     },
     {
