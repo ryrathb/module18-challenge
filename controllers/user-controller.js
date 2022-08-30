@@ -57,6 +57,7 @@ const userController = {
                 if (!userData) {
                     return res.status(404).json({ message: 'No user found with that specific ID :(' }); 
                 }
+                Thought.deleteMany({ username: userData.username })
             })
             .then(() => {
                 res.json({ message: 'User is gone!!' });
